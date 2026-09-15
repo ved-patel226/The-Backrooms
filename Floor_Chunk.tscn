@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://bg72kvgb1tmfy"]
+
+[ext_resource type="Texture2D" uid="uid://qms156xx4r3e" path="res://assets/carpet/carpet_color.png" id="1_hkner"]
+[ext_resource type="Texture2D" uid="uid://cu172tko72s0n" path="res://assets/carpet/carpet_normal.png" id="2_8mgpq"]
+[ext_resource type="Texture2D" uid="uid://c67f38rrl7s6e" path="res://assets/carpet/carpet_rough.png" id="3_fiq4f"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gtmna"]
+albedo_texture = ExtResource("1_hkner")
+roughness_texture = ExtResource("3_fiq4f")
+normal_enabled = true
+normal_texture = ExtResource("2_8mgpq")
+
+[sub_resource type="BoxMesh" id="BoxMesh_nfkut"]
+material = SubResource("StandardMaterial3D_gtmna")
+size = Vector3(3, 0.2, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ub5xl"]
+size = Vector3(3, 0.2, 3)
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+mesh = SubResource("BoxMesh_nfkut")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_ub5xl")

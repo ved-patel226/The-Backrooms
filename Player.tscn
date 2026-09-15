@@ -1,0 +1,66 @@
+[gd_scene load_steps=26 format=3 uid="uid://wr7h0liksvwd"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_jbomm"]
+[ext_resource type="Script" path="res://flash_light.gd" id="2_86sh1"]
+[ext_resource type="AudioStream" uid="uid://4dnd0fyutc3f" path="res://sounds/Carpet Footstep Noise/Steps_carpet-001.ogg" id="3_step001"]
+[ext_resource type="AudioStream" uid="uid://clq6arlmn28ow" path="res://sounds/Carpet Footstep Noise/Steps_carpet-002.ogg" id="4_step002"]
+[ext_resource type="AudioStream" uid="uid://bafqg6uwodaxd" path="res://sounds/Carpet Footstep Noise/Steps_carpet-003.ogg" id="5_step003"]
+[ext_resource type="AudioStream" uid="uid://bq6tv8akjolrl" path="res://sounds/Carpet Footstep Noise/Steps_carpet-004.ogg" id="6_step004"]
+[ext_resource type="AudioStream" uid="uid://dkk7eerjiy01q" path="res://sounds/Carpet Footstep Noise/Steps_carpet-005.ogg" id="7_step005"]
+[ext_resource type="AudioStream" uid="uid://cjv054eugbi00" path="res://sounds/Carpet Footstep Noise/Steps_carpet-006.ogg" id="8_step006"]
+[ext_resource type="AudioStream" uid="uid://bgktj8exv1ifd" path="res://sounds/Carpet Footstep Noise/Steps_carpet-007.ogg" id="9_step007"]
+[ext_resource type="AudioStream" uid="uid://dilf4tu4js3ph" path="res://sounds/Carpet Footstep Noise/Steps_carpet-008.ogg" id="10_step008"]
+[ext_resource type="AudioStream" uid="uid://cgkitivuducbt" path="res://sounds/Carpet Footstep Noise/Steps_carpet-009.ogg" id="11_step009"]
+[ext_resource type="AudioStream" uid="uid://dybhq0atd512i" path="res://sounds/Carpet Footstep Noise/Steps_carpet-010.ogg" id="12_step010"]
+[ext_resource type="AudioStream" uid="uid://bsyc6qfcx58iu" path="res://sounds/Carpet Footstep Noise/Steps_carpet-011.ogg" id="13_step011"]
+[ext_resource type="AudioStream" uid="uid://dclvktl54lmnp" path="res://sounds/Carpet Footstep Noise/Steps_carpet-012.ogg" id="14_step012"]
+[ext_resource type="AudioStream" uid="uid://c3fo3e13qgvvl" path="res://sounds/Carpet Footstep Noise/Steps_carpet-013.ogg" id="15_step013"]
+[ext_resource type="AudioStream" uid="uid://bsjrvnmxlouuh" path="res://sounds/Carpet Footstep Noise/Steps_carpet-014.ogg" id="16_step014"]
+[ext_resource type="AudioStream" uid="uid://do3bh3yv0xm6o" path="res://sounds/Carpet Footstep Noise/Steps_carpet-015.ogg" id="17_step015"]
+[ext_resource type="AudioStream" uid="uid://cgl1ist08j8bw" path="res://sounds/Carpet Footstep Noise/Steps_carpet-016.ogg" id="18_step016"]
+[ext_resource type="AudioStream" uid="uid://h118q62glqj1" path="res://sounds/Carpet Footstep Noise/Steps_carpet-017.ogg" id="19_step017"]
+[ext_resource type="AudioStream" uid="uid://deubcohj2m1l6" path="res://sounds/Carpet Footstep Noise/Steps_carpet-018.ogg" id="20_step018"]
+[ext_resource type="AudioStream" uid="uid://f0edd7amjqga" path="res://sounds/Carpet Footstep Noise/Steps_carpet-019.ogg" id="21_step019"]
+[ext_resource type="AudioStream" uid="uid://dph3guewmwdcf" path="res://sounds/Carpet Footstep Noise/Steps_carpet-020.ogg" id="22_step020"]
+[ext_resource type="AudioStream" uid="uid://y06h0l4g050s" path="res://sounds/Carpet Footstep Noise/Steps_carpet-021.ogg" id="23_step021"]
+[ext_resource type="AudioStream" uid="uid://meo1r6081epx" path="res://sounds/Breathing/07. Exertion Breathing.wav" id="24_exertion"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_w5xao"]
+radius = 0.4
+height = 1.8
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.063549, -0.0682564, 0.0540085)
+script = ExtResource("1_jbomm")
+footstep_sounds = Array[AudioStream]([ExtResource("3_step001"), ExtResource("4_step002"), ExtResource("5_step003"), ExtResource("6_step004"), ExtResource("7_step005"), ExtResource("8_step006"), ExtResource("9_step007"), ExtResource("10_step008"), ExtResource("11_step009"), ExtResource("12_step010"), ExtResource("13_step011"), ExtResource("14_step012"), ExtResource("15_step013"), ExtResource("16_step014"), ExtResource("17_step015"), ExtResource("18_step016"), ExtResource("19_step017"), ExtResource("20_step018"), ExtResource("21_step019"), ExtResource("22_step020"), ExtResource("23_step021")])
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_w5xao")
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="."]
+volume_db = -15.0
+max_distance = 15.0
+
+[node name="ExertionBreath" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_exertion")
+volume_db = 10.0
+
+[node name="Head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+current = true
+
+[node name="Hand" type="Node3D" parent="."]
+
+[node name="Flashlight" type="SpotLight3D" parent="Hand"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
+light_energy = 2.0
+shadow_enabled = true
+spot_range = 30.0
+spot_angle = 35.0
+script = ExtResource("2_86sh1")
+
+[node name="Flashlight" type="AudioStreamPlayer3D" parent="Hand/Flashlight"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.6, 0)
+volume_db = -20.0

@@ -1,0 +1,40 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctyktfcsuotk8"]
+
+[ext_resource type="Script" path="res://ceiling_light_chunk.gd" id="1_flicker"]
+[ext_resource type="Texture2D" uid="uid://jkcs4spf50hb" path="res://assets/ceiling_tiles_2/ceiling_tiles_2_normal.png" id="2_y8sau"]
+[ext_resource type="AudioStream" uid="uid://ds3injd58teeu" path="res://sounds/hum1.wav" id="3_e56td"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_55ps3"]
+transparency = 1
+emission_enabled = true
+emission = Color(0.909804, 0.882353, 0.615686, 1)
+normal_texture = ExtResource("2_y8sau")
+
+[sub_resource type="BoxMesh" id="BoxMesh_rimcs"]
+material = SubResource("StandardMaterial3D_55ps3")
+size = Vector3(3, 0.2, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ogajv"]
+size = Vector3(3, 0.2, 3)
+
+[node name="MeshInstance3D" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+mesh = SubResource("BoxMesh_rimcs")
+script = ExtResource("1_flicker")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_ogajv")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.92, 0.7, 1)
+light_energy = 0.5
+light_bake_mode = 1
+omni_range = 4.5
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("3_e56td")
+volume_db = -15.0
+max_db = 4.0
+autoplay = true

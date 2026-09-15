@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5d3smb8ybtnh"]
+
+[ext_resource type="Script" path="res://World.gd" id="1_h23t2"]
+[ext_resource type="PackedScene" uid="uid://wr7h0liksvwd" path="res://Player.tscn" id="2_rsktq"]
+[ext_resource type="Shader" path="res://Player.gdshader" id="3_vihdl"]
+
+[sub_resource type="Environment" id="Environment_world"]
+background_mode = 1
+background_color = Color(0.01, 0.01, 0.012, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.08, 0.08, 0.09, 1)
+ambient_light_energy = 0.1
+tonemap_mode = 2
+glow_enabled = true
+glow_intensity = 0.9
+glow_bloom = 0.05
+fog_enabled = true
+fog_light_color = Color(0.55, 0.5, 0.35, 1)
+fog_light_energy = 0.24
+fog_density = 0.035
+fog_sky_affect = 0.0
+adjustment_enabled = true
+adjustment_brightness = 0.85
+adjustment_contrast = 1.15
+adjustment_saturation = 0.65
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p3nju"]
+shader = ExtResource("3_vihdl")
+shader_parameter/aspect = 0.5
+shader_parameter/distortion = 0.5
+shader_parameter/radius = 1.0
+shader_parameter/alpha = 1.0
+shader_parameter/crop = 0.5
+shader_parameter/crop_color = Color(0, 0, 0, 1)
+shader_parameter/crop_feathering = 0.5
+shader_parameter/channel_offset = 0.005
+shader_parameter/noise_strength = 35.0
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_h23t2")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_world")
+
+[node name="Player" parent="." instance=ExtResource("2_rsktq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_p3nju")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://meo1r6081epx"
+path="res://.godot/imported/07. Exertion Breathing.wav-e366d0a23d9e33a38e2dfd71752194a4.sample"
+
+[deps]
+
+source_file="res://sounds/Breathing/07. Exertion Breathing.wav"
+dest_files=["res://.godot/imported/07. Exertion Breathing.wav-e366d0a23d9e33a38e2dfd71752194a4.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

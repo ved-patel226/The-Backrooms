@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://chk81lb7cxvbc"]
+
+[ext_resource type="Texture2D" uid="uid://b6gbok11bpmfu" path="res://assets/ceiling_tiles_2/ceiling_tiles_2_color.png" id="1_gfnte"]
+[ext_resource type="Texture2D" uid="uid://jkcs4spf50hb" path="res://assets/ceiling_tiles_2/ceiling_tiles_2_normal.png" id="2_cxcpu"]
+[ext_resource type="Texture2D" uid="uid://dfbtyrrvlwa27" path="res://assets/ceiling_tiles_2/ceiling_tiles_2_rough.png" id="3_euy3h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7i1aw"]
+albedo_texture = ExtResource("1_gfnte")
+roughness_texture = ExtResource("3_euy3h")
+emission = Color(0.94902, 0.94902, 0.839216, 1)
+normal_enabled = true
+normal_texture = ExtResource("2_cxcpu")
+
+[sub_resource type="BoxMesh" id="BoxMesh_2gbbb"]
+material = SubResource("StandardMaterial3D_7i1aw")
+size = Vector3(3, 0.2, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_aci0s"]
+size = Vector3(3, 0.2, 3)
+
+[node name="FloorChunk" type="MeshInstance3D"]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+mesh = SubResource("BoxMesh_2gbbb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0176849, -0.00408101, 0.0033741)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_aci0s")
